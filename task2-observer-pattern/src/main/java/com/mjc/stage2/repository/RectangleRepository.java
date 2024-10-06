@@ -1,6 +1,7 @@
 package com.mjc.stage2.repository;
 
 import com.mjc.stage2.entity.Rectangle;
+import com.mjc.stage2.warehouse.RectangleWarehouse;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -30,7 +31,9 @@ public class RectangleRepository {
     }
 
     public Rectangle getRectangle(int index) {
-        return rectangles.get(index);
+        Rectangle rectangle = rectangles.get(index);
+        rectangle.addObserver(RectangleWarehouse.getInstance());
+        return rectangle;
     }
 
     public List<Rectangle> getRectangles() {
