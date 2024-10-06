@@ -4,21 +4,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ChainParserBuilder {
-    private final List<AbstractTextParser> parsers = new ArrayList<>();
+    private List<AbstractTextParser> parsers = new ArrayList<>();
 
     public ChainParserBuilder() {
     }
 
     public ChainParserBuilder setParser(AbstractTextParser abstractTextParser) {
         parsers.add(abstractTextParser);
-        if (parsers.size() > 1) {
-            AbstractTextParser previousParser = parsers.get(parsers.size()-2);
-            previousParser.setNextParser(abstractTextParser);
-        }
         return this;
     }
 
     public AbstractTextParser build() {
-        return parsers.size() > 0 ? parsers.get(0) : null;
+        AbstractTextParser abstractTextParser = parsers.get(0);
+
+        for (int i=1; i<parsers.size(); i++){
+            if (abstractTextParser != null){
+                abstractTextParser.setNextParser(parsers.get(i));
+            }
+        }
+
+        return abstractTextParser;
     }
 }

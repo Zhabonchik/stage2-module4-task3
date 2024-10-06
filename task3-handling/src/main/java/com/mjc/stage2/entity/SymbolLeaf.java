@@ -1,10 +1,12 @@
 package com.mjc.stage2.entity;
 
-public class SymbolLeaf extends AbstractTextComponent {
-    private final char value;
 
-    public SymbolLeaf(char value) {
-        super(TextComponentType.SYMBOL);
+public class SymbolLeaf extends AbstractTextComponent{
+
+    private char value;
+
+    public SymbolLeaf(char value, TextComponentType textComponentType){
+        super(textComponentType);
         this.value = value;
     }
 
@@ -25,6 +27,6 @@ public class SymbolLeaf extends AbstractTextComponent {
 
     @Override
     public int getSize() {
-        return 1;
+        throw new UnsupportedOperationException();
     }
 }
