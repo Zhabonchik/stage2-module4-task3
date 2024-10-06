@@ -1,6 +1,7 @@
 package com.mjc.stage2;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ShopStock {
     private final List<Product> productList;
@@ -9,5 +10,7 @@ public class ShopStock {
         this.productList = productList;
     }
 
-    // Write your code here!
+    public List<Product> executeFilteringStrategy(FilteringStrategy strategy) {
+        return this.productList.stream().filter(strategy::filter).collect(Collectors.toList());
+    }
 }
